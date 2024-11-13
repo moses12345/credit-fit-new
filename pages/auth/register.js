@@ -37,7 +37,7 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "https://credit-fit-backend-vjrp-rahul-bafnas-projects.vercel.app/api/auth/signup",
+        "https://credit-fit-backend-dmhe.vercel.app/api/auth/signup",
         {
           firstName: formData.firstName,
           lastName: formData.lastName,
