@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage, devtools } from "zustand/middleware";
 
 // inital data
 const GROUPS = [
@@ -55,18 +56,40 @@ const ITEMS = [
   },
 ];
 //////////////
-export const useCartStore = create((set) => ({
-  groups: GROUPS,
-  items: ITEMS,
-  cart: 0,
-  inventory_adjustment: [],
-  setGroups: (data) => set((state) => ({ groups: [data, ...state.groups] })),
-  setItems: (data) => set((state) => ({ items: [data, ...state.items] })),
-  setInventoryAdjustment: (data) =>
-    set((state) => ({
-      inventory_adjustment: [data, ...state.inventory_adjustment],
-    })),
-  add: () => set((state) => ({ cart: state.cart + 1 })),
-  remove: () => set((state) => ({ cart: state.cart - 1 })),
-  removeAll: () => set({ cart: 0 }),
-}));
+export const useCartStore = create(
+  persist(
+    (set) => ({
+      groups: GROUPS,
+      items: ITEMS,
+      cart: 0,
+      inventory_adjustment: [],
+      login: false,
+      userData: {},
+      setGroups: (data) =>
+        set((state) => ({ groups: [data, ...state.groups] })),
+      setItems: (data) => set((state) => ({ items: [data, ...state.items] })),
+      setInventoryAdjustment: (data) =>
+        set((state) => ({
+          inventory_adjustment: [data, ...state.inventory_adjustment],
+        })),
+      add: () => set((state) => ({ cart: state.cart + 1 })),
+      remove: () => set((state) => ({ cart: state.cart - 1 })),
+      removeAll: () => set({ login: false, userData: {} }),
+      setLogin: (data) =>
+        set((state) => ({
+          login: data,
+        })),
+      setUserData: (data) =>
+        set((state) => ({
+          userData: data,
+        })),
+    }),
+    {
+      name: "auth-storage", // Unique name for local storage
+      partialize: (state) => ({
+        login: state.login,
+        userData: state.userData,
+      }),
+    }
+  )
+);

@@ -65,7 +65,7 @@ export default function CardStats({
                 {statSubtitle}
               </h5>
               <span className="font-semibold text-xl text-blueGray-700">
-                Qty:{statTitle}
+                {statTitle}
               </span>
               <h6 className="text-blueGray-400 uppercase font-bold text-xs mt-1">
                 PCK-2 | S0-1

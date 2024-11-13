@@ -5,31 +5,34 @@ const ShowInfo = ({ item, sidepane }) => {
         <div className="grid grid-cols-2">
           <div className="grid grid-cols-2 gap-6">
             <div className="font-medium col-span-1">
-              <div className="pb-2">Item Type</div>
-              <div className="pb-2">Unit</div>
-              <div className="pb-2">Created Source</div>
-              <div className="pb-6">Inventory Account</div>
-              <div className="pb-6">Purchase Information</div>
-              <div className="pb-2">Cost Price</div>
-              <div className="pb-2">Purchase Account</div>
-              <div className="pb-6">Description</div>
-              <div className="pb-6">Sales Information</div>
-              <div className="pb-2">Selling Price</div>
-              <div className="pb-2">Sales Account</div>
-              <div className="pb-2">Description</div>
+              <div className="pb-2 text-sm">Item Type</div>
+              <div className="pb-2 text-sm">Unit</div>
+              <div className="pb-2 text-sm">Created Source</div>
+              <div className="pb-6 text-sm">Inventory Account</div>
+              <div className="pb-6 text-base">Purchase Information</div>
+              <div className="pb-2 text-sm">Cost Price</div>
+              <div className="pb-2 text-sm">Purchase Account</div>
+              <div className="pb-6 text-sm">Description</div>
+              <div className="pb-6 text-base">Sales Information</div>
+              <div className="pb-2 text-sm">Selling Price</div>
+              <div className="pb-2 text-sm">Sales Account</div>
+              <div className="pb-2 text-sm">Description</div>
             </div>
             <div className="col-span-2">
-              <div className="pb-2">Inventory Items</div>
-              <div className="pb-2">{item.sku}</div>
-              <div className="pb-2">User</div>
-              <div className="pb-6">{item?.inventory_account}</div>
-              <div className="pb-6">-</div>
-              <div className="pb-2">₹{item?.rate}</div>
-              <div className="pb-2">Cost of Goods Sold</div>
+              <div className="pb-2 text-sm">Inventory Items</div>
+              <div className="pb-2 text-sm">{item?.sku || "-"}</div>
+              <div className="pb-2 text-sm">User</div>
+
+              <div className="pb-6 text-sm">
+                {item?.inventory_account || "-"}
+              </div>
+              <div className="pb-6 text-sm">-</div>
+              <div className="pb-2 text-sm">₹{item?.rate || 0}</div>
+              <div className="pb-2 text-sm">Cost of Goods Sold</div>
               <div className="pb-6 text-break">des</div>
-              <div className="pb-6">-</div>
-              <div className="pb-2">₹1,00,000.00</div>
-              <div className="pb-2">Sales</div>
+              <div className="pb-6 text-sm">-</div>
+              <div className="pb-2 text-sm">₹1,00,000.00</div>
+              <div className="pb-2 text-sm">Sales</div>
               <div className="pb-2 text-break">des</div>
             </div>
           </div>

@@ -45,6 +45,9 @@ export default function Settings() {
     "USAGE UNIT": "usage_unit",
   };
 
+  const [selectedCat, setSelectedCat] = useState("All");
+  const cat = ["All", "Sold", "Purchased"];
+
   const formFields = {
     type: "",
     name: "",
@@ -67,7 +70,7 @@ export default function Settings() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full  px-4">
+        <div className="w-full">
           <CardSettings
             title={"Items"}
             addItems={addItems}
@@ -75,6 +78,22 @@ export default function Settings() {
             addItem={addItem}
             formFields={formFields}
           />
+          {!addItems && (
+            <div className="bg-white rounded my-2 px-6 py-1 flex gap-12 cursor-pointer">
+              {cat.map((data) => {
+                return (
+                  <div
+                    className={`border-blueGray-600 text-sm ${
+                      selectedCat == data ? "border-b-3 font-medium" : ""
+                    }`}
+                    onClick={() => setSelectedCat(data)}
+                  >
+                    {data}
+                  </div>
+                );
+              })}
+            </div>
+          )}
           <CardTable
             title="Items"
             data={items}

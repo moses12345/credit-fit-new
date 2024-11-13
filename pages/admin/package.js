@@ -64,7 +64,7 @@ export default function Package() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full  px-4">
+        <div className="w-full">
           <CardSettings
             title={"Package"}
             addItems={addItems}

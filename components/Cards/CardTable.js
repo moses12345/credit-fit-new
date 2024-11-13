@@ -75,6 +75,8 @@ export default function CardTable({
 }) {
   const [Colums, setColums] = useState(Object.keys(tableColums));
   const [values, setvalues] = useState(Object.values(tableColums));
+  const [selectedCat, setSelectedCat] = useState("Overview");
+
   const [adjustStockForm, setAdjustStockForm] = useState(false);
 
   const [item, setItem] = useState(null);
@@ -102,6 +104,8 @@ export default function CardTable({
     "PURCHASE DESCRIPTION": "purchase_des",
   };
 
+  const cat = ["Overview", "Transactions", "History"];
+
   return (
     <>
       {!addItems && (
@@ -123,7 +127,7 @@ export default function CardTable({
                   >
                     {title}
                   </h3>
-                  <h3
+                  {/* <h3
                     className={
                       "font-semibold text-lg cursor-pointer " +
                       (color === "light" ? "text-blueGray-700" : "text-white")
@@ -131,7 +135,14 @@ export default function CardTable({
                     onClick={onItemsSave}
                   >
                     Add {title} +
-                  </h3>
+                  </h3> */}
+                  <button
+                    className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={onItemsSave}
+                  >
+                    Add +
+                  </button>
                 </div>
               </div>
             </div>
@@ -235,10 +246,21 @@ export default function CardTable({
                     </button>
                   </div>
                 </div>
-                <div className="flex border-b border-gray-200 relative gap-2">
-                  <h6>Overview</h6>
-                  <h6>Transactions</h6>
-                  <h6>History</h6>
+                <div className="flex border-b border-gray-200 py-3 relative gap-10">
+                  <div className="bg-white rounded my-1 flex gap-12 cursor-pointer">
+                    {cat.map((data) => {
+                      return (
+                        <div
+                          className={`border-blueGray-600 text-sm ${
+                            selectedCat == data ? "border-b-3 font-medium" : ""
+                          }`}
+                          onClick={() => setSelectedCat(data)}
+                        >
+                          {data}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
                 {adjustStockForm ? (
                   <FormAdjustment itemData={item} />

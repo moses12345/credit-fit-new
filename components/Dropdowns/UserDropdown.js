@@ -1,11 +1,16 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
+import { useRouter } from "next/router";
+import { useCartStore } from "../../store/store";
 
 const UserDropdown = () => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
+  const router = useRouter();
+  const removeAll = useCartStore((store) => store.removeAll);
+
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: "bottom-start",
@@ -14,6 +19,10 @@ const UserDropdown = () => {
   };
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
+  };
+  const logOut = () => {
+    removeAll();
+    router.push("/auth/login");
   };
   return (
     <>
@@ -50,7 +59,7 @@ const UserDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Action
+          Setting
         </a>
         <a
           href="#pablo"
@@ -76,9 +85,9 @@ const UserDropdown = () => {
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
-          onClick={(e) => e.preventDefault()}
+          onClick={() => logOut()}
         >
-          Seprated link
+          Log-out
         </a>
       </div>
     </>

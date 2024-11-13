@@ -1,11 +1,54 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Link from "next/link";
+
+import { useCartStore } from "../../store/store";
+import { useRouter } from "next/router";
 
 // layout for page
 
 import Auth from "layouts/Auth.js";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+
+  const login = useCartStore((store) => store.login);
+
+  const setLogin = useCartStore((store) => store.setLogin);
+  const setUserData = useCartStore((store) => store.setUserData);
+
+  const handleSignIn = async () => {
+    const payload = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://credit-fit-backend-vjrp-rahul-bafnas-projects.vercel.app/api/auth/login",
+        payload
+      );
+      if (response?.status == 200) {
+        setLogin(true);
+        setUserData(response.data?.user);
+        router.push("/admin/dashboard");
+      }
+    } catch (error) {
+      console.error(
+        "Login Failed:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
+  useEffect(() => {
+    if (login) {
+      router.push("/admin/dashboard");
+    }
+  }, []);
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -44,12 +87,15 @@ export default function Login() {
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
+                      htmlFor="email"
                     >
                       Email
                     </label>
                     <input
                       type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
                     />
@@ -58,12 +104,15 @@ export default function Login() {
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
+                      htmlFor="password"
                     >
                       Password
                     </label>
                     <input
                       type="password"
+                      id="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
                     />
@@ -85,6 +134,7 @@ export default function Login() {
                     <button
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
+                      onClick={handleSignIn}
                     >
                       Sign In
                     </button>

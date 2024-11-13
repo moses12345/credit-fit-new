@@ -4,6 +4,8 @@ import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
 
+import { useCartStore } from "../store/store";
+
 import PageChange from "components/PageChange/PageChange.js";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -49,6 +51,15 @@ export default class MyApp extends App {
 
 `);
     document.insertBefore(comment, document.documentElement);
+    console.log("this is loading.....");
+    // Router.events.on("routeChangeStart", (url) => {
+    //   console.log(`Loading: ${url}`);
+    //   document.body.classList.add("body-page-transition");
+    //   ReactDOM.render(
+    //     <PageChange path={url} />,
+    //     document.getElementById("page-transition")
+    //   );
+    // });
   }
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};

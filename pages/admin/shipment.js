@@ -98,7 +98,7 @@ export default function Shipment() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full  px-4">
+        <div className="w-full">
           <CardSettings
             title={"Shipment"}
             addItems={addItems}

@@ -78,11 +78,120 @@ export default function CardKanbanBoard({
     console.log(index, type);
     setShipped((data) => [yetToShip[0], ...data]);
     setYetToShip([]);
-    console.log("this is yetToShip", yetToShip);
-    console.log("this si get data", index, type);
+    // console.log("this is yetToShip", yetToShip);
+    // console.log("this si get data", index, type);
   };
 
   const YETTOSHIP = [
+    {
+      index: 0,
+      statSubtitle: "NEW USERS",
+      statTitle: "1",
+      statArrow: "nul",
+      statPercent: "",
+      statPercentColor: "text-red-500",
+      statDescription: "2 nov,2024",
+      statIconName: "fas fa-chart-pie",
+      statIconColor: "bg-orange-500",
+      callBack: getData,
+    },
+    {
+      index: 0,
+      statSubtitle: "NEW USERS",
+      statTitle: "1",
+      statArrow: "nul",
+      statPercent: "",
+      statPercentColor: "text-red-500",
+      statDescription: "2 nov,2024",
+      statIconName: "fas fa-chart-pie",
+      statIconColor: "bg-orange-500",
+      callBack: getData,
+    },
+    {
+      index: 0,
+      statSubtitle: "NEW USERS",
+      statTitle: "1",
+      statArrow: "nul",
+      statPercent: "",
+      statPercentColor: "text-red-500",
+      statDescription: "2 nov,2024",
+      statIconName: "fas fa-chart-pie",
+      statIconColor: "bg-orange-500",
+      callBack: getData,
+    },
+
+    {
+      index: 0,
+      statSubtitle: "NEW USERS",
+      statTitle: "1",
+      statArrow: "nul",
+      statPercent: "",
+      statPercentColor: "text-red-500",
+      statDescription: "2 nov,2024",
+      statIconName: "fas fa-chart-pie",
+      statIconColor: "bg-orange-500",
+      callBack: getData,
+    },
+    {
+      index: 0,
+      statSubtitle: "NEW USERS",
+      statTitle: "1",
+      statArrow: "nul",
+      statPercent: "",
+      statPercentColor: "text-red-500",
+      statDescription: "2 nov,2024",
+      statIconName: "fas fa-chart-pie",
+      statIconColor: "bg-orange-500",
+      callBack: getData,
+    },
+    {
+      index: 0,
+      statSubtitle: "NEW USERS",
+      statTitle: "1",
+      statArrow: "nul",
+      statPercent: "",
+      statPercentColor: "text-red-500",
+      statDescription: "2 nov,2024",
+      statIconName: "fas fa-chart-pie",
+      statIconColor: "bg-orange-500",
+      callBack: getData,
+    },
+    {
+      index: 0,
+      statSubtitle: "NEW USERS",
+      statTitle: "1",
+      statArrow: "nul",
+      statPercent: "",
+      statPercentColor: "text-red-500",
+      statDescription: "2 nov,2024",
+      statIconName: "fas fa-chart-pie",
+      statIconColor: "bg-orange-500",
+      callBack: getData,
+    },
+    {
+      index: 0,
+      statSubtitle: "NEW USERS",
+      statTitle: "1",
+      statArrow: "nul",
+      statPercent: "",
+      statPercentColor: "text-red-500",
+      statDescription: "2 nov,2024",
+      statIconName: "fas fa-chart-pie",
+      statIconColor: "bg-orange-500",
+      callBack: getData,
+    },
+    {
+      index: 0,
+      statSubtitle: "NEW USERS",
+      statTitle: "1",
+      statArrow: "nul",
+      statPercent: "",
+      statPercentColor: "text-red-500",
+      statDescription: "2 nov,2024",
+      statIconName: "fas fa-chart-pie",
+      statIconColor: "bg-orange-500",
+      callBack: getData,
+    },
     {
       index: 0,
       statSubtitle: "NEW USERS",
@@ -219,7 +328,7 @@ export default function CardKanbanBoard({
                       <TableDropdown />
                     </h3>
                   </div>
-                  <div className="w-full px-4 flex flex-col gap-1 kanban-board">
+                  <div className="w-full px-4 flex flex-col gap-1 kanban-board side-bar">
                     {yetToShip.map((datum) => (
                       <CardStats
                         {...datum}
@@ -257,7 +366,7 @@ export default function CardKanbanBoard({
                       <TableDropdown />
                     </h3>
                   </div>
-                  <div className="w-full px-4 flex flex-col gap-1 kanban-board">
+                  <div className="w-full px-4 flex flex-col gap-1 kanban-board side-bar">
                     {shipped.map((datum) => (
                       <CardStats {...datum} options={["move to Deliverd"]} />
                     ))}
@@ -292,7 +401,7 @@ export default function CardKanbanBoard({
                       <TableDropdown />
                     </h3>
                   </div>
-                  <div className="w-full px-4 flex flex-col gap-1 kanban-board">
+                  <div className="w-full px-4 flex flex-col gap-1 kanban-board side-bar">
                     {delivered.map((datum) => (
                       <CardStats {...datum} options={["checked"]} />
                     ))}

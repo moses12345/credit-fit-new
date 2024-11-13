@@ -53,14 +53,17 @@ export default function Settings() {
       });
   };
 
+  const [selectedCat, setSelectedCat] = useState("All");
+  const cat = ["All", "Sold", "Purchased"];
+
   useEffect(() => {
     fetchGroups();
   }, []);
 
   return (
     <>
-      <div className="flex flex-wrap">
-        <div className="w-full  px-4">
+      <div className="flex flex-wrap mt-1">
+        <div className="w-full">
           <CardSettings
             title={"Groups"}
             addItems={addItems}
@@ -68,6 +71,20 @@ export default function Settings() {
             addItem={addItem}
             formFields={formFields}
           />
+          <div className="bg-white rounded my-2 px-6 py-1 flex gap-12 cursor-pointer">
+            {cat.map((data) => {
+              return (
+                <div
+                  className={`border-blueGray-600 text-sm ${
+                    selectedCat == data ? "border-b-3 font-medium" : ""
+                  }`}
+                  onClick={() => setSelectedCat(data)}
+                >
+                  {data}
+                </div>
+              );
+            })}
+          </div>
           <CardTable
             title="Groups"
             data={groups}
@@ -76,7 +93,6 @@ export default function Settings() {
             onItemsSave={onItemsClick}
           />
         </div>
-        <div className="w-full lg:w-4/12 px-4">{/* <CardProfile /> */}</div>
       </div>
     </>
   );

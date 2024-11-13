@@ -90,7 +90,7 @@ export default function Vendors() {
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full  px-4">
+        <div className="w-full">
           <CardSettings
             title={"Vendors"}
             addItems={addItems}
